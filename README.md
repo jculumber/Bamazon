@@ -34,8 +34,13 @@ npm install cli-table
 ### Customer View
 View an example of the Customer View application [here](https://drive.google.com/file/d/1ghklN4NiOyIrpiArSxu5lfp6wwjTRE4z/view).
 
+
+
 ### Manager View
 View an example of the Manager View application [here](https://drive.google.com/file/d/1-KxyBVC9-BC3jXPvMNCPjLiPZ93dLGsn/view).
 
+
+
 ### Supervisor View
 Coming soon!!!
+##

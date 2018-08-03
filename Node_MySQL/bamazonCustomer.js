@@ -19,12 +19,13 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    //  resetTable();
+    //resetTable();
+    resetCart();
     runBamazon();
 });
 
 function runBamazon() {
-    connection.query("SELECT * FROM products", function (err, res) {
+    connection.query("SELECT * FROM products WHERE product_name != ?", ["none"], function (err, res) {
         if (err) throw err;
 
         //  Running this application will first display all of the items available for sale.
@@ -91,7 +92,8 @@ function buyProduct() {
                 var subtotal = answer.quantity * res[0].price
 
                 connection.query("UPDATE products SET stock_quantity = ? WHERE ?", [newAmount, { item_id: answer.item }], function (err, res) {
-
+                });
+                connection.query("UPDATE products SET product_sales = ? WHERE ?", [subtotal + res[0].product_sales, { item_id: answer.item }], function (err, res) {
                 });
                 if (newAmount > 1) {
                     console.log("\nStock updated! There are now " + chalk.cyan(newAmount) + " " + res[0].product_name + " items in stock.");
@@ -137,8 +139,6 @@ function buyProduct() {
 
 function resetTable() {
     var query = "UPDATE products SET stock_quantity = ? WHERE product_name = ?"
-    connection.query("DELETE FROM cart WHERE customer_id is NOT NULL", function(err, res) {
-    });
     connection.query(query, [10, "piano"], function (err, res) {
     });
     connection.query(query, [10, "coffee maker"], function (err, res) {
@@ -158,5 +158,10 @@ function resetTable() {
     connection.query(query, [10, "flute"], function (err, res) {
     });
     connection.query(query, [10, "checkers"], function (err, res) {
+    });
+};
+
+function resetCart() {
+    connection.query("DELETE FROM cart WHERE customer_id is NOT NULL", function(err, res) {
     });
 };

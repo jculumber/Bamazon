@@ -34,7 +34,7 @@ connection.connect(function (err) {
             if (answer.menuOptions === "View Products for Sale") {
                 //  If a manager selects `View Products for Sale`, the app should list every available item:
                 //  the item IDs, names, prices, and quantities.
-                connection.query("SELECT * FROM products", function (err, res) {
+                connection.query("SELECT * FROM products WHERE product_name != ?", ["none"], function (err, res) {
                     if (err) throw err;
 
                     var table = new Table({
@@ -84,7 +84,7 @@ connection.connect(function (err) {
                 console.log(chalk.magenta.bold("\n===========================================================\n"));
                 //  If a manager selects `Add to Inventory`, your app should display a prompt that will
                 //  let the manager "add more" of any item currently in the store.
-                connection.query("SELECT * FROM products", function (err, res) {
+                connection.query("SELECT * FROM products WHERE product_name != ?", ["none"], function (err, res) {
                     if (err) throw err;
 
                     var table = new Table({

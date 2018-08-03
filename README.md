@@ -42,5 +42,5 @@ View an example of the Manager View application [here](https://drive.google.com/
 
 
 ### Supervisor View
-Coming soon!!!
+View an example of the Supervisor View application [here](https://drive.google.com/file/d/1jRhgLf1Od1AnhyGyvZ6mcvNybqD-DOLJ/view).
 ##
